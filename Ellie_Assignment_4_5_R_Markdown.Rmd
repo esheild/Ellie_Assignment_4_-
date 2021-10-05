@@ -18,7 +18,6 @@ summary(cars)
 ```
 
 ## Including Plots
-
 You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
@@ -26,3 +25,54 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+```{r install, echo=FALSE, message=FALSE}
+
+install.packages("r5r")
+install.packages("osmextract")
+install.packages("tidyverse")
+install.packages("sf")
+install.packages("ggthemes")
+install.packages("ggspatial")
+install.packages("tigris")
+install.packages("wesanderson")
+install.packages("tidytransit")
+install.packages("stars")
+```
+
+```{r trial add Rstudio}
+Sys.setenv(JAVA_HOME="")
+```
+
+
+```{r add to library, echo=FALSE, message=FALSE}
+
+options(java.parameters = "-Xmx2G")
+
+library(r5r)
+library(osmextract)
+library(tidyverse)
+library(sf)
+library(ggthemes)
+library(ggspatial)
+library(tigris)
+library(wesanderson)
+library(tidytransit)
+library(stars)
+```
+
+```{r download GTFS, message=FALSE, echo=FALSE}
+dir.create("networks")
+
+download.file("http://transitfeeds.com/p/mbta/64/latest/download", file.path("networks","CAMgtfs.zip"), mode = "wb", quiet=TRUE)
+```
+
+
+```{r open street map, message=FALSE, echo=FALSE}
+
+SLO_file <- oe_match("Massachusetts")
+```
+
+
+
